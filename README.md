@@ -1,10 +1,8 @@
 # Open Kickflip SDK for iOS
 
-(WARNING. AUDIO STREAMING HAS BEEN DISABLED FOR MY OWN PURPOSES.)
-
 This is a spinoff from the original [Kickflip](http://kickflip.io) opensource project and commercial platform.
 
-Open Kickflip taks the best of the awesome Kickflip and allows you to directly upload the streaming to your own s3 bucket.
+Open Kickflip takes the best of the awesome Kickflip and allows you to directly upload the streaming to your own s3 bucket. It also removes the dependency on the Kickflip API.
 
 Open Kickflip provides a complete video broadcasting solution for your iOS application. You can use our pre-built `KFBroadcastViewController` to stream live video with one line of code. 
 
@@ -19,14 +17,11 @@ Open Kickflip provides a complete video broadcasting solution for your iOS appli
     
     KFS3Stream* s3Config     = [[KFS3Stream alloc] init];
     NSString* random         = [KFS3Stream randomStringWithLength:6];
-    s3Config.bucketName      = [@"***YOUR BUCKET NAME HERE***/" stringByAppendingPathComponent:random];
-    s3Config.awsAccessKey    = @"*** YOUR AWS TEMPORAL TOKEN***";
-    s3Config.awsSecretKey    = @"*** YOUR AWS TEMPORAL SECRET TOKEN***";
-    s3Config.awsSessionToken = @"*** YOUR AWS TEMPORAL SESSION TOEKN***";
-    s3Config.awsRegion = @"*** YOUR S3 BUCKET REGION ****"; // i.e. "us-east-1"
-    s3Config.awsPrefix = @""; /// leave this like this
-    NSDate* date = [[NSDate alloc] initWithTimeIntervalSince1970:1443486098];  /// *** YOUR S3 TEMPORAL TOKEN EXPIRATIONS IN EPOCH TIME ***
-    s3Config.awsExpirationDate = date;
+    s3Config.bucketName      = [@"*** YOUR BUCKET NAME/PATH ***/" stringByAppendingPathComponent:random];
+    s3Config.awsAccessKey    =  @"*** YOUR AWS TOKEN ***";
+    s3Config.awsSecretKey    =  @"*** YOUR AWS SECRET TOKEN ***";
+    s3Config.awsRegion       =  @"*** YOUR S3 BUCKET REGION ****"; // i.e. "us-east-1"
+    s3Config.awsPrefix       =  @""; // Mandatory to set and leave blank.
     
     [OpenKickflip presentBroadcasterFromViewController:self
                                         s3Configuration:s3Config
@@ -47,10 +42,7 @@ Open Kickflip provides a complete video broadcasting solution for your iOS appli
 
 ## How do I get an AWS S3 Temporal Upload Token?
 
-Using the [aws-sdk-ruby](https://github.com/aws/aws-sdk-ruby) you can do this by
-```ruby
-    Aws::STS::Client.new(region: '***REGION NAME***', credentials: Aws::Credentials.new('***AWS IAM TOKEN WITH ACCESS TO THE BUCKET***', '***AWS IAM TOKEN SECRET***')).get_session_token(duration_seconds: 1.day)
-```
+TODO (Use of Cognito makes more sense than using direct access/secret keys)
 
 ## Cocoapods Setup
 
@@ -58,7 +50,8 @@ You'll need to install [Cocoapods](http://cocoapods.org) first.
     
 Add the following line to your `Podfile`:
 
-    pod 'OpenKickflip'
+    source 'https://github.com/OpenKickflip/openkickflip-ios-sdk.git'
+    pod 'OpenKickflip', '~> 1.5'
 
 Then run Cocoapods to install all of the dependencies:
 
