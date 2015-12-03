@@ -11,7 +11,7 @@
 #import "AVFoundation/AVAssetWriterInput.h"
 #import "AVFoundation/AVMediaFormat.h"
 #import "AVFoundation/AVVideoSettings.h"
-#import "OpenKickFlip.h"
+#import "OpenKickflip.h"
 
 @interface VideoEncoder : NSObject
 

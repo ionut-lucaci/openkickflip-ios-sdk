@@ -1,5 +1,5 @@
 //
-//  OpenKickFlip.h
+//  OpenKickflip.h
 //
 //  Created by Gaston Morixe on 10/27/15.
 //  Copyright (c) 2015 Gaston Morixe. All rights reserved.
@@ -7,7 +7,6 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-//#import <KFStream.h>
 #import "KFS3Stream.h"
 
 
@@ -49,5 +48,55 @@ typedef void (^KFBroadcastCompletionBlock)(BOOL success, NSError* error);
                               s3Configuration:(KFS3Stream*)s3Config
                                         ready:(KFBroadcastReadyBlock)readyBlock
                                    completion:(KFBroadcastCompletionBlock)completionBlock;
+
+///-------------------------------
+/// @name Configuration
+///-------------------------------
+
++ (NSString *)h264Profile;
++ (void)setH264Profile:(NSString *)profile;
+
++ (double)resolutionWidth;
++ (double)resolutionHeight;
++ (void)setResolutionWidth:(int)width height:(int)height;
+
+//+ (NSString)profile;
+//+ (void)setProfile:(AVVideoComposition)
+
+/**
+ *  Minimum bitrate (combined video + audio)
+ */
++ (double)minBitrate;
++ (void)setMinBitrate:(double)minBitrate;
+
+/**
+ *  Maximum bitrate (combined video + audio)
+ *
+ *  @return Defaults to 2 Mbps
+ */
++ (double)maxBitrate;
++ (void)setMaxBitrate:(double)maxBitrate;
+
+/**
+ *  Initial bitrate (combined video + audio)
+ */
++ (double)initialBitrate;
++ (void)setInitialBitrate:(double)initialBitrate;
+
+/**
+ *  Whether or not to actively adjust the bitrate to network conditions.
+ *
+ *  @return Defaults to YES
+ */
++ (BOOL)useAdaptiveBitrate;
++ (void)setUseAdaptiveBitrate:(BOOL)enabled;
+
+/**
+ *  Whether or not to record audio.
+ *
+ *  @return Defaults to YES
+ */
++ (BOOL)useAudio;
++ (void)setuseAudio:(BOOL)enabled;
 
 @end

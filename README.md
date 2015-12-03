@@ -1,17 +1,17 @@
-# OpenKickFlip SDK for iOS
+# Open Kickflip SDK for iOS
 
 (WARNING. AUDIO STREAMING HAS BEEN DISABLED FOR MY OWN PURPOSES.)
 
-This is a fork from the original [Kickflip](http://kickflip.io) opensource project and commercial platform.
+This is a spinoff from the original [Kickflip](http://kickflip.io) opensource project and commercial platform.
 
-OpenKickFlip taks the best of the awesome Kickflip and allows you to directly upload the streaming to your own s3 bucket.
+Open Kickflip taks the best of the awesome Kickflip and allows you to directly upload the streaming to your own s3 bucket.
 
-OpenKickFlip provides a complete video broadcasting solution for your iOS application. You can use our pre-built `KFBroadcastViewController` to stream live video with one line of code. 
+Open Kickflip provides a complete video broadcasting solution for your iOS application. You can use our pre-built `KFBroadcastViewController` to stream live video with one line of code. 
 
 ## Quickstart
 
 ```objc
-#import <OpenKickFlip/OpenKickFlip.h>
+#import <OpenKickflip/OpenKickflip.h>
 
 ...
 
@@ -58,7 +58,7 @@ You'll need to install [Cocoapods](http://cocoapods.org) first.
     
 Add the following line to your `Podfile`:
 
-    pod 'OpenKickFlip'
+    pod 'OpenKickflip'
 
 Then run Cocoapods to install all of the dependencies:
 

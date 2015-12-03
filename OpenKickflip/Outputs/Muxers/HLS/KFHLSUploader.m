@@ -414,13 +414,6 @@ static NSString * const kKFS3Key = @"kKFS3Key";
                 DDLogError(@"Error removing thumbnail: %@", error.description);
             }
             self.stream.thumbnailURL = [self urlWithFileName:fileName];
-//            [[KFAPIClient sharedClient] updateMetadataForStream:self.stream callbackBlock:^(KFStream *updatedStream, NSError *error) {
-//                if (error) {
-//                    DDLogError(@"Error updating stream thumbnail: %@", error);
-//                } else {
-//                    DDLogDebug(@"Updated stream thumbnail: %@", updatedStream.thumbnailURL);
-//                }
-//            }];
         }
     });
 }
