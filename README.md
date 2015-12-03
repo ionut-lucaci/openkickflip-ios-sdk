@@ -4,45 +4,7 @@ This is a spinoff from the original [Kickflip](http://kickflip.io) opensource pr
 
 Open Kickflip takes the best of the awesome Kickflip and allows you to directly upload the streaming to your own s3 bucket. It also removes the dependency on the Kickflip API.
 
-Open Kickflip provides a complete video broadcasting solution for your iOS application. You can use our pre-built `KFBroadcastViewController` to stream live video with one line of code. 
-
-## Quickstart
-
-```objc
-#import <OpenKickflip/OpenKickflip.h>
-
-...
-
-- (void) broadcastButtonPressed {
-    
-    KFS3Stream* s3Config     = [[KFS3Stream alloc] init];
-    NSString* random         = [KFS3Stream randomStringWithLength:6];
-    s3Config.bucketName      = [@"*** YOUR BUCKET NAME/PATH ***/" stringByAppendingPathComponent:random];
-    s3Config.awsAccessKey    =  @"*** YOUR AWS TOKEN ***";
-    s3Config.awsSecretKey    =  @"*** YOUR AWS SECRET TOKEN ***";
-    s3Config.awsRegion       =  @"*** YOUR S3 BUCKET REGION ****"; // i.e. "us-east-1"
-    s3Config.awsPrefix       =  @""; // Mandatory to set and leave blank.
-    
-    [OpenKickflip presentBroadcasterFromViewController:self
-                                        s3Configuration:s3Config
-                                                 ready:^(KFStream *stream) {
-        if (stream.streamURL) {
-            NSLog(@"Stream is ready at URL: %@", stream.streamURL);
-        }
-    } completion:^(BOOL success, NSError* error){
-        if (!success) {
-            NSLog(@"Error setting up stream: %@", error);
-        } else {
-            NSLog(@"Done broadcasting");
-        }
-    }];
-}
-
-```
-
-## How do I get an AWS S3 Temporal Upload Token?
-
-TODO (Use of Cognito makes more sense than using direct access/secret keys)
+Open Kickflip provides a complete video broadcasting solution for your iOS application. You can use our pre-built `KFBroadcastViewController` to stream live video with one line of code.
 
 ## Cocoapods Setup
 
@@ -58,7 +20,42 @@ Then run Cocoapods to install all of the dependencies:
     $ pod install
 
 As with all projects that depend on Cocoapods, make sure to open the new `.xcworkspace` file, not your `.xcodeproj` file.
+
+## Quickstart
+
+```objc
+#import <OpenKickflip/OpenKickflip.h>
+
+...
+
+- (void) broadcastButtonPressed {
     
+    KFS3Stream* s3Config     = [[KFS3Stream alloc] init];
+    s3Config.bucketName      = @"*** YOUR BUCKET NAME ***";
+    s3Config.awsAccessKey    = @"*** YOUR AWS TOKEN ***";
+    s3Config.awsSecretKey    = @"*** YOUR AWS SECRET TOKEN ***";
+    s3Config.awsRegion       = @"*** YOUR S3 BUCKET REGION ****"; // i.e. "us-east-1"
+    s3Config.awsPrefix       = @"*** YOUR CUSTOM PREFIX ***"; // Can be blank
+    
+    [OpenKickflip presentBroadcasterFromViewController:self s3Configuration:s3Config ready:^(KFStream *stream) {
+        if (stream.streamURL) {
+            NSLog(@"Stream is ready at URL: %@", stream.streamURL);
+        }
+    } completion:^(BOOL success, NSError* error){
+        if (!success) {
+            NSLog(@"Error setting up stream: %@", error);
+        } else {
+            NSLog(@"Done broadcasting");
+        }
+    }];
+}
+
+```
+
+## Todo
+
+Use Cognito to generate AWS access keys instead of using the account's
+
 ## Documentation
 
 TODO

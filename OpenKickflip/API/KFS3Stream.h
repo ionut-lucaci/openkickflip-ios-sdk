@@ -20,6 +20,7 @@ extern NSString * const KFS3StreamType;
 @property (nonatomic, strong) NSString *awsPrefix;
 @property (nonatomic, strong) NSString *awsRegion;
 
-+(NSString *)randomStringWithLength:(int)len;
++ (NSString *)randomStringWithLength:(int)len;
+- (NSString *)uploadKeyPrefix;
 
 @end

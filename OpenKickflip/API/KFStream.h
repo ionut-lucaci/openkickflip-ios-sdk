@@ -30,6 +30,11 @@ extern NSString * const KFStreamTypeKey;
 @interface KFStream : MTLModel <MTLJSONSerializing>
 
 /**
+ *  Stream Prefix (for reducing root key count)
+ */
+@property (nonatomic, strong, readonly) NSString *streamPrefix;
+
+/**
  *  Stream UUID (unique identifier)
  */
 @property (nonatomic, strong, readonly) NSString *streamID;

@@ -20,6 +20,7 @@ static NSString * const KFS3StreamAWSPrefix = @"aws_prefix";
 
 
 @interface KFS3Stream() {
+    NSString *_streamPrefix;
     NSString *_streamID;
 }
 @end
@@ -59,6 +60,13 @@ static const NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRS
     }];
 }
 
+- (NSString*)streamPrefix {
+    if (!_streamPrefix) {
+        _streamPrefix = [KFS3Stream randomStringWithLength:6];
+    }
+    return _streamPrefix;
+}
+
 - (NSString*)streamID {
     if (!_streamID) {
         _streamID = [[[NSUUID alloc] init] UUIDString];
@@ -66,8 +74,14 @@ static const NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRS
     return _streamID;
 }
 
+- (NSString *)uploadKeyPrefix {
+    return [[self.awsPrefix
+              stringByAppendingPathComponent:self.streamPrefix]
+                stringByAppendingPathComponent:self.streamID];
+}
+
 - (NSURL*)uploadURL {
-    return [NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/%@", self.bucketName]];
+    return [NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/%@/%@", self.bucketName, [self uploadKeyPrefix]]];
 }
 
 @end

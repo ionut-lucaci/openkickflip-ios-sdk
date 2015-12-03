@@ -173,8 +173,8 @@ static NSString * const kKFS3Key = @"kKFS3Key";
     
 }
 
-- (NSString*) awsKeyForStream:(KFS3Stream*)stream fileName:(NSString*)fileName {
-    return [NSString stringWithFormat:@"%@%@", stream.awsPrefix, fileName];
+- (NSString *)awsKeyForStream:(KFS3Stream*)stream fileName:(NSString*)fileName {
+    return [stream.uploadKeyPrefix stringByAppendingPathComponent:fileName];
 }
 
 - (void) updateManifestWithString:(NSString*)manifestString manifestName:(NSString*)manifestName {
