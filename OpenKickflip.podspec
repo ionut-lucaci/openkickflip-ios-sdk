@@ -21,6 +21,7 @@ application. Based on Chris' KickFlip."
   s.dependency 'AFNetworking', '~> 2.2'
   s.dependency 'AWSS3', '~> 2.4'
   s.dependency 'AFOAuth2Manager', '~> 2.0'
+  s.dependency 'Bolts'
   s.dependency 'CocoaLumberjack', '~> 2.0'
   s.dependency 'SSKeychain', '~> 1.2'
   s.dependency 'FFmpegWrapper', '~> 1.0'
