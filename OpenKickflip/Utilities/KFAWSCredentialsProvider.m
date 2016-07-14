@@ -55,7 +55,10 @@
         regionType = AWSRegionSAEast1;
     } else if ([region isEqualToString:@"cn-north-1"]) {
         regionType = AWSRegionCNNorth1;
+    } else if ([region isEqualToString:@"eu-central-1"]) {
+        regionType = AWSRegionEUCentral1;
     }
+    
     return regionType;
 }
 
